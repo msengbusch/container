@@ -1,11 +1,11 @@
-name: Proxy Image
+name: prometheus-podman-exporter
 on:
   schedule:
     - cron: '0 0 * * 0'
   push:
     branches: [ "main" ]
     paths:
-      - 'caddy/**'
+      - 'prometheus-podman-exporter/**'
   workflow_dispatch:
 
 jobs:
@@ -35,8 +35,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: caddy
+          context: prometheus-podman-exporter
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/msengbusch/caddy:latest
+            ghcr.io/msengbusch/prometheus-podman-exporter:latest
